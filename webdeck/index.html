@@ -208,6 +208,13 @@
   .slide.active .vonr .vd.hot{animation:vpop 1s .7s cubic-bezier(.2,.7,.2,1) forwards, vpulse 2.4s 1.7s ease-in-out infinite}
   @keyframes vpop{from{transform:scale(1);box-shadow:none}to{transform:scale(1.55);box-shadow:0 0 60px color-mix(in srgb,var(--accent) 60%,transparent)}}
   @keyframes vpulse{0%,100%{transform:scale(1.5)}50%{transform:scale(1.62)}}
+  /* 섹션 구분(단락) section */
+  .slide.sectiondiv{align-items:center;justify-content:center;text-align:center}
+  .sec-wrap{max-width:1100px;padding:0 6vw}
+  .sec-num{font-size:clamp(44px,8vw,110px);font-weight:900;color:var(--accent);line-height:1;letter-spacing:.02em}
+  .sec-num::after{content:"";display:block;width:60px;height:4px;background:var(--accent);border-radius:2px;margin:20px auto 22px}
+  .sec-title{font-size:clamp(30px,5vw,64px);font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.12}
+  .sec-sub{color:#c8b3ba;font-size:clamp(15px,1.7vw,21px);margin-top:18px;line-height:1.6}
   /* 조직도 orgchart */
   .org{width:min(1560px,96vw);text-align:center}
   .org-boss{display:inline-flex;flex-direction:column;gap:2px;background:var(--accent);color:#fff;border-radius:16px;padding:16px 30px;font-weight:900;box-shadow:0 12px 34px color-mix(in srgb,var(--accent) 40%,transparent)}
@@ -393,6 +400,10 @@
         s.teams.map(tm=>`<div class="org-team"><div class="r">${esc(tm.role)}</div><div class="nm">${esc(tm.name)}</div><div class="sklabel">${esc(s.skilllabel||'스킬 · 사원')}</div><div class="org-skills">${(tm.skills||[]).map(sk=>`<span class="org-skill${sk.startsWith('~')?' dim':''}">${esc(sk.replace(/^~/,''))}</span>`).join('')}</div></div>`).join('') +
         `</div></div>` +
         (s.sub ? `<p class="sub rv d3" style="margin-top:26px">${esc(s.sub)}</p>` : '');
+    } else if (s.type === 'section') {
+      cls += ' sectiondiv';
+      el_bg = 'radial-gradient(120% 100% at 50% 42%, #3a0d15 0%, #1c0a10 52%, #0a0a0c 100%)';
+      inner = `<div class="sec-wrap rv d1">${s.num?`<div class="sec-num">${esc(s.num)}</div>`:''}<h2 class="sec-title">${esc(s.title||'')}</h2>${s.sub?`<p class="sec-sub rv d2">${esc(s.sub)}</p>`:''}</div>`;
     } else if (s.type === 'ending') {
       id = 's-end';
       inner = k + `<h1 class="core rv d1">${lines(s.lines)}</h1>` + (s.foot ? `<p class="foot rv d2">${esc(s.foot)}</p>` : '');
@@ -410,7 +421,7 @@
     const el = build(s);
     if (T.theme && T.theme.light) { /* 통일 라이트 무드 — body 그라데이션이 관통 */ }
     else if (s.mood === 'light') el.classList.add('light');
-    else if (!s.bgimg && s.type !== 'video' && s.type !== 'cover') el.style.background = UNIFIED;
+    else if (!s.bgimg && s.type !== 'video' && s.type !== 'cover' && s.type !== 'section') el.style.background = UNIFIED;
     deck.appendChild(el);
   });
   const slides = [...deck.querySelectorAll('.slide')];

@@ -52,6 +52,10 @@
 ## showcase — 브라우저 목업
 `{ "type":"showcase", "big":true, "url":"site.com", "shot":"/abs/screenshot.png", "link":"https://…", "heading":[["…",true]], "sub":"…" }`
 
+## section — 단락 구분(파트 나누기)
+`{ "type":"section", "num":"03", "title":"후킹의 원리", "sub":"(선택)한 줄 부연" }`
+큰 번호 + 파트 제목 + 딥레드 배경으로 **주제가 바뀌는 지점**을 확실히 구분한다. 긴 덱은 3~4장마다 단락이 바뀌는 곳에 넣어 청중이 흐름을 따라오게 한다. `num` 생략 가능.
+
 ## ending — 마무리
 `{ "type":"ending", "kicker":"THE END", "lines":[["…",false],["…",true]], "foot":"연락처·마무리" }`
 
