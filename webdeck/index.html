@@ -218,8 +218,17 @@
   .org-team{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);border-radius:16px;padding:16px 14px;text-align:left}
   .org-team .r{color:var(--accent);font-weight:800;font-size:12px;letter-spacing:.05em;margin-bottom:4px}
   .org-team .nm{color:#fff;font-weight:800;font-size:clamp(15px,1.5vw,19px);margin-bottom:12px}
-  .org-skill{display:inline-block;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:#f0c9d0;font-weight:700;font-size:12.5px;padding:4px 10px;border-radius:12px;margin:3px 4px 0 0}
+  .org-chief{display:inline-flex;flex-direction:column;gap:2px;background:transparent;border:2px solid var(--accent);border-radius:16px;padding:11px 28px;font-weight:900}
+  .org-chief .r{font-size:11.5px;font-weight:800;color:var(--accent);letter-spacing:.08em}
+  .org-chief .nm{font-size:clamp(17px,1.8vw,24px);color:var(--ink,#fff)}
+  .org-skills{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+  .org-team .sklabel{color:var(--dim,#9a9098);font-size:10.5px;font-weight:800;letter-spacing:.1em;margin-bottom:6px}
+  .org-skill{display:flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);color:#f0c9d0;font-weight:700;font-size:12.5px;padding:6px 11px;border-radius:10px}
+  .org-skill::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
   .org-skill.dim{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:#9a9098}
+  .org-skill.dim::before{background:#9a9098}
+  .slide.light .org-chief .nm{color:#141210}
+  .slide.light .org-skill{color:#5a2030}
   .slide.light .org-team{background:rgba(20,18,16,.05);border-color:rgba(20,18,16,.14)}
   .slide.light .org-team .nm{color:#141210}
   .dots{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20}
@@ -376,10 +385,12 @@
         (s.sub ? `<p class="sub rv d3" style="margin-top:30px">${esc(s.sub)}</p>` : '');
     } else if (s.type === 'orgchart') {
       inner = k + (s.title ? `<div class="slidetitle rv d1">${heading(s.title)}</div>` : '') +
-        `<div class="org rv d2"><div class="org-boss"><span class="r">${esc(s.boss.role)}</span><span class="nm">${esc(s.boss.name)}</span></div>` +
+        `<div class="org rv d2">` +
+        (s.chief?`<div class="org-chief"><span class="r">${esc(s.chief.role)}</span><span class="nm">${esc(s.chief.name)}</span></div><div class="org-stem"></div>`:'') +
+        `<div class="org-boss"><span class="r">${esc(s.boss.role)}</span><span class="nm">${esc(s.boss.name)}</span></div>` +
         `<div class="org-stem"></div>` +
         `<div class="org-teams" style="--tc:${s.teams.length}">` +
-        s.teams.map(tm=>`<div class="org-team"><div class="r">${esc(tm.role)}</div><div class="nm">${esc(tm.name)}</div>${(tm.skills||[]).map(sk=>`<span class="org-skill${sk.startsWith('~')?' dim':''}">${esc(sk.replace(/^~/,''))}</span>`).join('')}</div>`).join('') +
+        s.teams.map(tm=>`<div class="org-team"><div class="r">${esc(tm.role)}</div><div class="nm">${esc(tm.name)}</div><div class="sklabel">${esc(s.skilllabel||'스킬 · 사원')}</div><div class="org-skills">${(tm.skills||[]).map(sk=>`<span class="org-skill${sk.startsWith('~')?' dim':''}">${esc(sk.replace(/^~/,''))}</span>`).join('')}</div></div>`).join('') +
         `</div></div>` +
         (s.sub ? `<p class="sub rv d3" style="margin-top:26px">${esc(s.sub)}</p>` : '');
     } else if (s.type === 'ending') {

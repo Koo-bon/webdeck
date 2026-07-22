@@ -31,9 +31,11 @@
 ## flow — 단계 플로우
 `{ "type":"flow", "title":"…", "steps":[{"num":"STEP 1","name":"…","desc":"…","skill":"⚙ 도구명"}], "sub":"…" }`
 
-## orgchart — 조직도(부장-팀장-직원)
-`{ "type":"orgchart", "title":"…", "boss":{"role":"부장 · …","name":"…"}, "teams":[{"role":"팀장 · …","name":"…","skills":["직원A","직원B"]}], "sub":"…" }`
-skill 앞에 `~` 붙이면 흐린 칩.
+## orgchart — 조직도(최종결정권자-부장-팀장-스킬 4단)
+`{ "type":"orgchart", "title":"…", "chief":{"role":"최종 결정권자","name":"나"}, "boss":{"role":"부장 · …","name":"…"}, "teams":[{"role":"팀장 · …","name":"…","skills":["직원A","직원B"]}], "skilllabel":"스킬 · 사원", "sub":"…" }`
+- `chief`(선택) = 맨 위 최종 결정권자 단(테두리 박스). 있으면 4단: **chief → boss(부장) → teams(팀장) → skills(사원)**. 없으면 boss부터 3단.
+- `teams[].skills` 는 팀장 아래 **세로 리스트**로 쫙 나열된다(사원 목록). skill 앞에 `~` 붙이면 흐린 항목(가져다 쓴/보조).
+- `skilllabel`(선택) = 각 팀 스킬 목록 위 작은 라벨(기본 "스킬 · 사원").
 
 ## loophell — 반복 지옥 애니(왔다갔다)
 `{ "type":"loophell", "title":"…", "lead":"…", "steps":[{"t":"툴","s":"부연"}], "loop":"반복 문구", "time":"<b>6시간→40분</b> …", "punch":"큰 결정타 문장" }`
