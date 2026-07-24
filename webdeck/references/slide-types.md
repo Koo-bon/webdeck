@@ -52,6 +52,18 @@
 ## showcase — 브라우저 목업
 `{ "type":"showcase", "big":true, "url":"site.com", "shot":"/abs/screenshot.png", "link":"https://…", "heading":[["…",true]], "sub":"…" }`
 
+## harnessflow — 하네스 흐름(단계 + 사람 게이트)
+`{ "type":"harnessflow", "kicker":"흐름 — …", "steps":[{"k":"stage","name":"S1 훅","tool":"훅카피"}, {"k":"gate","name":"나 컨펌 ①","note":"컨셉 방향"}, …], "sub":"…" }`
+- 가로 한 줄로 **단계(solid) + 게이트(dashed)**를 나열. `k:"stage"`=실선 박스(name+tool), `k:"gate"`=점선 박스(name+note, accent 컬러).
+- 자동화 파이프라인이 "정해진 순서(하네스)로 돌되, 중간중간 사람이 컨펌(게이트)한다"를 보여줄 때. 모바일에선 가로 스크롤.
+
+## feature 확장 필드(우측 영역 교체)
+`feature`의 우측 이미지 자리를 인터랙션으로 바꿀 수 있다(하나만):
+- `"flip":"/abs/뒷면.png"` — 이미지 클릭 시 앞/뒤 플립(비포/애프터). `"flip_label":"…"`.
+- `"ba":{"before":"/abs/a.png","after":"/abs/b.png","labels":["전","후"]}` — 드래그 전후 비교.
+- `"stats":[{"num":"-54%","label":"…"}]` + `"stats_note":"…"` — 빅넘버.
+- `"combo":["스킬A","스킬B"]` — 좌측에 '조합' 칩. `"checks":["…"]`+`"checks_label":"…"` — 좌측 하단 칩.
+
 ## section — 단락 구분(파트 나누기)
 `{ "type":"section", "num":"03", "title":"후킹의 원리", "sub":"(선택)한 줄 부연" }`
 큰 번호 + 파트 제목 + 딥레드 배경으로 **주제가 바뀌는 지점**을 확실히 구분한다. 긴 덱은 3~4장마다 단락이 바뀌는 곳에 넣어 청중이 흐름을 따라오게 한다. `num` 생략 가능.

@@ -49,7 +49,7 @@ def generate(brief, out_dir):
         if s.get("type") == "grid" and "items" in s:
             for it in s["items"]:
                 if "img" in it: it["img"] = _relink(it["img"], assets, seen)
-        if s.get("type") == "video" and "video" in s:
+        if "video" in s:
             s["video"] = _relink(s["video"], assets, seen)
         if s.get("type") == "cover" and "img" in s:
             s["img"] = _relink(s["img"], assets, seen)

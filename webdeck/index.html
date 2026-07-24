@@ -164,7 +164,7 @@
   .slide.light .fbox{background:rgba(20,18,16,.05);border-color:rgba(20,18,16,.15)}
   .slide.light .fname{color:#141210}
   .slide.light .fdesc{color:#5a534a}
-    .feature{display:grid;grid-template-columns:1fr 1.15fr;gap:50px;width:min(1760px,96vw);align-items:center;text-align:left}
+    .feature{display:grid;grid-template-columns:1fr 1.22fr;gap:64px;width:min(1560px,88vw);align-items:center;text-align:left}
   .fe-left .kicker{margin-bottom:14px}
   .fe-skill{display:inline-block;font-weight:900;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-1px;color:var(--accent);
     background:color-mix(in srgb,var(--accent) 12%,transparent);border:2px solid color-mix(in srgb,var(--accent) 45%,transparent);
@@ -176,12 +176,35 @@
   .fe-tag{color:var(--accent);font-weight:700;font-size:14.5px;letter-spacing:.08em;margin-bottom:6px}
   .fe-pt{font-weight:800;font-size:clamp(18px,1.9vw,26px);margin-bottom:6px}
   .fe-pd{color:var(--dim);font-size:clamp(14px,1.4vw,17.5px);line-height:1.6}
-  .fe-img{width:100%;height:min(66vh,720px);object-fit:cover;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.55);display:block;background:#0b0b0d}
-  .fe-img.fit{object-fit:contain;background:#101014}
+  .fe-img{width:100%;height:min(70vh,780px);object-fit:cover;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.55);display:block;background:#0b0b0d}
+  .fe-img.fit{object-fit:contain;background:transparent;box-shadow:none}
+  /* 조합 칩 — 스킬끼리 합쳐 만든 경우 */
+  .fe-combo{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 20px}
+  .fe-combo span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:6px 13px;font-size:13.5px;font-weight:700;color:#e3d8dd}
+  .fe-combo span.lab{background:color-mix(in srgb,var(--accent) 16%,transparent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent)}
+  /* 클릭 플립 (앞: 이미지 / 뒤: 비포애프터) */
+  .flipwrap{position:relative;width:100%;height:min(70vh,780px);cursor:pointer;perspective:1700px}
+  .flipinner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .flipwrap.flipped .flipinner{transform:rotateY(180deg)}
+  .flipface{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
+  .flipface img{max-width:100%;max-height:100%;object-fit:contain;border-radius:14px}
+  .flipface.back{transform:rotateY(180deg)}
+  .flipbadge{position:absolute;right:12px;bottom:10px;z-index:5;background:rgba(0,0,0,.72);color:#fff;font-size:13px;font-weight:700;padding:7px 14px;border-radius:20px;pointer-events:none}
+  /* feature 안 드래그 비교 */
+  .ba.feba{width:100%;aspect-ratio:16/9}
+  .babadge{position:absolute;top:12px;right:12px;z-index:5;background:rgba(0,0,0,.72);color:#fff;font-size:13px;font-weight:700;padding:7px 14px;border-radius:20px;pointer-events:none}
+  /* feature 우측 빅넘버 (ponytail 정량) */
+  .fe-stats{display:flex;flex-direction:column;gap:38px;align-items:flex-start}
+  .fe-stat .n{font-weight:900;font-size:clamp(54px,6.2vw,104px);color:var(--accent);line-height:1;letter-spacing:-.01em}
+  .fe-stat .l{color:var(--dim);font-size:clamp(14px,1.5vw,18px);margin-top:8px}
+  .fe-statnote{color:#8a7f86;font-size:12.5px;margin-top:-6px}
   a.fe-link{display:block;position:relative}
   a.fe-link::after{content:"자세히 보기 ↗";position:absolute;right:16px;top:16px;background:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:700;padding:7px 14px;border-radius:20px;opacity:0;transition:.3s}
   a.fe-link:hover::after{opacity:1}
   @media(max-width:900px){.feature{grid-template-columns:1fr}}
+  .lh-vid{width:min(430px,46vw);max-height:25vh;border-radius:12px;margin:14px auto 2px;display:block;object-fit:cover;box-shadow:0 16px 44px rgba(0,0,0,.5)}
+  .loophell .lh-flow{gap:10px}
+  .loophell:has(.lh-vid) .lh-lead{margin-bottom:16px}
   /* 컨셉 애니 ① 반복 지옥 loophell */
   .loophell{width:min(1240px,94vw);text-align:center}
   .lh-lead{color:var(--dim);font-size:clamp(15px,1.6vw,20px);margin-bottom:32px}
@@ -208,6 +231,8 @@
   .slide.active .vonr .vd.hot{animation:vpop 1s .7s cubic-bezier(.2,.7,.2,1) forwards, vpulse 2.4s 1.7s ease-in-out infinite}
   @keyframes vpop{from{transform:scale(1);box-shadow:none}to{transform:scale(1.55);box-shadow:0 0 60px color-mix(in srgb,var(--accent) 60%,transparent)}}
   @keyframes vpulse{0%,100%{transform:scale(1.5)}50%{transform:scale(1.62)}}
+  .slide.ctrcards .card{text-align:center;align-items:center}
+  .slide.ctrcards .cardtag{margin-left:auto;margin-right:auto}
   /* 섹션 구분(단락) section */
   .slide.sectiondiv{align-items:center;justify-content:center;text-align:center}
   .sec-wrap{max-width:1100px;padding:0 6vw}
@@ -238,6 +263,15 @@
   .slide.light .org-skill{color:#5a2030}
   .slide.light .org-team{background:rgba(20,18,16,.05);border-color:rgba(20,18,16,.14)}
   .slide.light .org-team .nm{color:#141210}
+  /* 하네스 흐름 harnessflow */
+  .hflow{display:flex;align-items:stretch;justify-content:center;gap:6px;flex-wrap:nowrap;width:min(1880px,99vw)}
+  .hf-stage{background:rgba(255,255,255,.055);border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 14px;text-align:center;min-width:96px;display:flex;flex-direction:column;justify-content:center}
+  .hf-sname{font-weight:800;font-size:clamp(13px,1.35vw,19px);color:#fff;line-height:1.18;white-space:nowrap}
+  .hf-stool{color:var(--dim);font-size:10.5px;margin-top:6px;line-height:1.4}
+  .hf-gate{background:transparent;border:1.5px dashed color-mix(in srgb,var(--accent) 60%,transparent);border-radius:12px;padding:10px 10px;text-align:center;min-width:70px;display:flex;flex-direction:column;justify-content:center;align-self:center}
+  .hf-gname{color:var(--accent);font-weight:800;font-size:12px;white-space:nowrap}
+  .hf-gnote{color:var(--dim);font-size:10.5px;margin-top:4px;white-space:nowrap}
+  .hf-arw{align-self:center;color:var(--dim);font-size:17px;font-weight:700;flex:0 0 auto}
   .dots{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20}
   .dot{width:9px;height:9px;border-radius:50%;background:#4a3a3e;border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s}
   .dot.on{background:var(--accent);transform:scale(1.25)}
@@ -260,10 +294,43 @@
   .prevbtn{position:fixed;bottom:20px;left:26px;color:var(--dim);background:none;border:none;font-size:22px;cursor:pointer;z-index:20;opacity:.7}
   .prevbtn:hover{opacity:1;color:var(--ink)}
   .hint{position:fixed;top:22px;left:50%;transform:translateX(-50%);color:var(--dim);font-size:12px;letter-spacing:.12em;z-index:20;transition:opacity .5s}
+  /* ── 모바일 최적화 ── */
+  @media (max-width:760px){
+    .slide{padding:6vh 6vw;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .slide.bleed,.slide.sectiondiv{justify-content:center}
+    .slide::after{content:"";flex:0 0 4vh}
+    .kicker{font-size:12px;margin-bottom:18px;letter-spacing:.14em}
+    .core{font-size:clamp(28px,8.5vw,52px)}
+    .slidetitle{font-size:clamp(21px,6vw,30px)}
+    .cards,.cards.big{grid-template-columns:1fr!important;width:92vw;gap:12px}
+    .card,.cards.big .card{padding:20px 18px}
+    .cards.big .cardtitle{font-size:22px}.cards.big .carddesc{font-size:15px}
+    .grid,.grid.big{grid-template-columns:1fr 1fr!important;width:94vw;gap:10px}
+    .grid.narrow{grid-template-columns:1fr!important;width:92vw}
+    .feature{grid-template-columns:1fr!important;gap:22px;width:90vw}
+    .fe-img,.flipwrap,.ba.feba{height:min(40vh,320px)!important}
+    .fe-skill{font-size:clamp(26px,8vw,40px);padding:10px 16px}
+    .fe-title{font-size:clamp(22px,6vw,30px);margin-bottom:18px}
+    .fe-stats{flex-direction:row;flex-wrap:wrap;gap:8vw}
+    .trio{gap:9vw}.trinum{font-size:clamp(38px,13vw,64px)}
+    .org-teams{grid-template-columns:1fr 1fr!important;gap:10px}
+    .flow{flex-direction:column;gap:8px;width:92vw}
+    .flow .farrow{transform:rotate(90deg);padding:2px 0}
+    .flow .fstep{max-width:none}
+    .hflow{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;width:92vw;padding:2px 0 12px;gap:8px}
+    .hf-stage,.hf-gate{flex:0 0 auto}
+    .browser,.browser.big{width:94vw}
+    .bshot,.browser.big .bshot{height:38vh}
+    .sec-num{font-size:clamp(40px,14vw,80px)}.sec-title{font-size:clamp(26px,8vw,44px)}
+    .balabel,.babadge,.flipbadge{font-size:11px;padding:5px 10px}
+    .deckctrl button{width:38px;height:38px;font-size:16px}
+    .counter{font-size:11px}
+  }
   @media print{
+    @page{size:1280px 720px;margin:0}
     body{overflow:visible!important;height:auto!important;background:#0a0a0c}
     .deck{position:static!important;height:auto!important}
-    .slide{position:relative!important;inset:auto!important;display:flex!important;opacity:1!important;transform:none!important;page-break-after:always;width:100vw;height:100vh;break-inside:avoid}
+    .slide{position:relative!important;inset:auto!important;display:flex!important;opacity:1!important;transform:none!important;page-break-after:always;width:1280px;height:720px;overflow:hidden!important;break-inside:avoid}
     .rv{opacity:1!important;transform:none!important}
     .dots,.counter,.prevbtn,.hint,.deckctrl{display:none!important}
     video{background:#000}
@@ -361,18 +428,44 @@
           `<div class="fstep"><div class="fbox"><div class="fnum">${esc(st.num||('0'+(i+1)))}</div><div class="fname">${esc(st.name)}</div><div class="fdesc">${esc(st.desc||'')}</div>${st.skill?`<span class="fskill">⚙ ${esc(st.skill)}</span>`:''}</div></div>`
         ).join('') + `</div>` +
         (s.sub ? `<p class="sub rv d3" style="font-size:14px;margin-top:26px">${esc(s.sub)}</p>` : '');
+    } else if (s.type === 'harnessflow') {
+      inner = k + (s.title ? `<div class="slidetitle rv d1">${heading(s.title)}</div>` : '') +
+        `<div class="hflow rv d2">` +
+        s.steps.map((st, i) => {
+          const arw = (i > 0 && st.k === 'stage') ? `<div class="hf-arw">→</div>` : '';
+          if (st.k === 'gate') return `<div class="hf-gate"><div class="hf-gname">${esc(st.name)}</div>${st.note?`<div class="hf-gnote">${esc(st.note)}</div>`:''}</div>`;
+          return arw + `<div class="hf-stage"><div class="hf-sname">${esc(st.name)}</div>${st.tool?`<div class="hf-stool">${esc(st.tool)}</div>`:''}</div>`;
+        }).join('') +
+        `</div>` +
+        (s.sub ? `<p class="sub rv d3" style="font-size:14px;margin-top:26px;max-width:1120px">${esc(s.sub)}</p>` : '');
     } else if (s.type === 'cover') {
       cls += ' bleed'; el_bg = s.bg || '#efe9ea';
       inner = `<img class="coverimg" src="${esc(s.img)}" alt="">`;
     } else if (s.type === 'feature') {
       const im = `<img class="fe-img${s.fit?' fit':''}" src="${esc(s.img)}" alt="">`;
+      let right;
+      if (s.flip) { // 클릭 → 앞/뒤 플립 (비포애프터)
+        right = `<div class="flipwrap"><div class="flipinner">` +
+          `<div class="flipface front"><img src="${esc(s.img)}" alt=""></div>` +
+          `<div class="flipface back"><img src="${esc(s.flip)}" alt=""></div>` +
+          `</div><span class="flipbadge">🖱 클릭 → ${esc(s.flip_label||'비포/애프터')}</span></div>`;
+      } else if (s.ba) { // 드래그 → 스킬 전/후 비교
+        right = `<div class="ba feba"><img class="before" src="${esc(s.ba.before)}" alt=""><img class="after" src="${esc(s.ba.after)}" alt="">` +
+          `<div class="bahandle"><b>⟺</b></div><span class="balabel b">${esc(s.ba.labels[0])}</span><span class="balabel a">${esc(s.ba.labels[1])}</span>` +
+          `<span class="babadge">↔ 드래그 → 전/후 비교</span></div>`;
+      } else if (s.stats) { // 빅넘버
+        right = `<div class="fe-stats">` + s.stats.map((st,i) => `<div class="fe-stat rv d${Math.min(i+1,4)}"><div class="n">${esc(st.num)}</div><div class="l">${esc(st.label)}</div></div>`).join('') +
+          (s.stats_note ? `<div class="fe-statnote rv d4">${esc(s.stats_note)}</div>` : '') + `</div>`;
+      } else {
+        right = s.link ? `<a class="fe-link" href="${esc(s.link)}" target="_blank" rel="noopener">${im}</a>` : im;
+      }
       inner = `<div class="feature rv d1"><div class="fe-left">${k}` +
         (s.skill ? `<div class="fe-skill">${esc(s.skill)}</div>` : '') +
+        (s.combo ? `<div class="fe-combo"><span class="lab">🧩 조합</span>${s.combo.map(c=>`<span>${esc(c)}</span>`).join('')}</div>` : '') +
         (s.title ? `<div class="fe-title">${heading(s.title)}</div>` : '') +
         (s.points||[]).map(pt => `<div class="fe-point">${pt.tag?`<div class="fe-tag">${esc(pt.tag)}</div>`:''}<div class="fe-pt">${esc(pt.title)}</div><div class="fe-pd">${esc(pt.desc||'')}</div></div>`).join('') +
-        `</div><div class="fe-right">` +
-        (s.link ? `<a class="fe-link" href="${esc(s.link)}" target="_blank" rel="noopener">${im}</a>` : im) +
-        `</div></div>`;
+        (s.checks ? `<div class="fe-combo" style="margin:6px 0 0">${s.checks_label?`<span class="lab">${esc(s.checks_label)}</span>`:''}${s.checks.map(c=>`<span>${esc(c)}</span>`).join('')}</div>` : '') +
+        `</div><div class="fe-right">` + right + `</div></div>`;
     } else if (s.type === 'loophell') {
       inner = k + (s.title ? `<div class="slidetitle rv d1">${heading(s.title)}</div>` : '') +
         `<div class="loophell">` +
@@ -380,6 +473,7 @@
         `<div class="lh-flow rv d2">` +
         s.steps.map((st,i)=>`${i>0?'<div class="lh-arw">→</div>':''}<div class="lh-chip" style="animation-delay:${(i*1.0).toFixed(1)}s">${esc(st.t)}${st.s?`<small>${esc(st.s)}</small>`:''}</div>`).join('') +
         `</div>` +
+        (s.video ? `<video class="lh-vid rv d3" src="${esc(s.video)}" autoplay muted loop playsinline preload="metadata"></video>` : '') +
         (s.loop ? `<div class="lh-loop rv d3">↺ ${esc(s.loop)}</div>` : '') +
         (s.time ? `<div class="lh-time rv d3">${s.time}</div>` : '') +
         (s.punch ? `<div class="lh-punch">${esc(s.punch)}</div>` : '') +
@@ -409,7 +503,7 @@
       inner = k + `<h1 class="core rv d1">${lines(s.lines)}</h1>` + (s.foot ? `<p class="foot rv d2">${esc(s.foot)}</p>` : '');
     }
     const sec = document.createElement('section');
-    sec.className = cls; if (id) sec.id = id; sec.innerHTML = inner;
+    sec.className = cls + (s.center ? ' ctrcards' : ''); if (id) sec.id = id; sec.innerHTML = inner;
     if (typeof el_bg !== 'undefined' && el_bg) sec.style.background = el_bg;
     return sec;
   }
@@ -425,6 +519,11 @@
     deck.appendChild(el);
   });
   const slides = [...deck.querySelectorAll('.slide')];
+
+  // flip cards (클릭 → 비포애프터)
+  deck.querySelectorAll('.flipwrap').forEach(w => {
+    w.addEventListener('click', e => { e.stopPropagation(); w.classList.toggle('flipped'); });
+  });
 
   // drag sliders
   deck.querySelectorAll('.ba').forEach(ba => {
